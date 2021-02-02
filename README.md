@@ -1,2 +1,2 @@
-# EyesforBlind
-Repository for eyes for blind 
+# Aura
+Repository for navigating assistant 
