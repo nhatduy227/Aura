@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 
 # absolute paths
-weights_path = "C:/Users/nomie/Desktop/EyesforBlind/Yolo Detection/yolov3.weights"
-cfg_path = "C:/Users/nomie/Desktop/EyesforBlind/Yolo Detection/yolov3.cfg"
-coco_path = "C:/Users/nomie/Desktop/EyesforBlind/Yolo Detection/coco.names"
-img_path = "C:/Users/nomie/Desktop/EyesforBlind/Yolo Detection/room_ser.jpg"
+weights_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.weights"
+cfg_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.cfg"
+coco_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/coco.names"
+img_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/room_ser.jpg"
 
 # Load Yolo
 net = cv2.dnn.readNet(weights_path, cfg_path)
