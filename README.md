@@ -3,7 +3,7 @@ Repository for navigating assistant
 
 # Live Detection with Yolo 
 To implement Live detection using Yolo, do the following steps: </br>
-* Open yolo_live_detection.py, change the file paths to your absolute file paths.
+* Download pretrained models folder and put it in Yolo Detection.
 * In the line "cap = cv2.VideoCapture(0)", you can toggle between 0 and 1 to use internal of external webcam. 
 * Run the file and a live detection live stream should pop up 
 * Press the ESC to exit the program 

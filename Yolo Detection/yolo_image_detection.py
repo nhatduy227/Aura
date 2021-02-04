@@ -1,11 +1,13 @@
 import cv2
 import numpy as np
+from pathlib import Path
 
-# absolute paths
-weights_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.weights"
-cfg_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.cfg"
-coco_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/coco.names"
-img_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/room_ser.jpg"
+# constants
+base_path = Path(__file__).parent
+weights_path = str(base_path) + "\pretrained models\yolov3.weights"
+cfg_path = str(base_path) + "\pretrained models\yolov3.cfg"
+coco_path = str(base_path) + "\pretrained models\coco.names"
+img_path = str(base_path) + "\image.jpg"
 
 # Load Yolo
 net = cv2.dnn.readNet(weights_path, cfg_path)

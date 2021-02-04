@@ -4,12 +4,15 @@ from imutils.video import FPS
 import argparse
 import threading
 import cv2
+import imutils
+from pathlib import Path
 import numpy as np
 
 # constants
-weights_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.weights"
-cfg_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/yolov3.cfg"
-coco_path = "C:/Users/nomie/Desktop/Aura/Yolo Detection/pretrained models/coco.names"
+base_path = Path(__file__).parent
+weights_path = str(base_path) + "\pretrained models\yolov3.weights"
+cfg_path = str(base_path) + "\pretrained models\yolov3.cfg"
+coco_path = str(base_path) + "\pretrained models\coco.names"
 font = cv2.FONT_HERSHEY_PLAIN
 
 # Load Yolo
@@ -63,7 +66,7 @@ def show_detected_object(outs):
             cv2.putText(frame, label, (x, y + 30), font, 3, color, 3)
 
 # Camera Rendering
-cap = WebcamVideoStream(src=1).start() 
+cap = WebcamVideoStream(src=0).start() 
 
 while True: 
     # Start FPS counter
