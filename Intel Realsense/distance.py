@@ -2,8 +2,9 @@
 import pyrealsense2 as rs
 import cv2
 import numpy as np
-import os
-import time 
+# constant
+font = cv2.FONT_HERSHEY_PLAIN
+distance_output = ''
 
 def startRsPipeline():
     # Configure depth and color streams
@@ -15,7 +16,7 @@ def startRsPipeline():
     pipeline.start(config)
     return pipeline
 
-def detecting(pipeline, width = 640, height = 360):
+def detectingObject(pipeline, width = 640, height = 360):
 
     frames = pipeline.wait_for_frames()
     depth_frame = frames.get_depth_frame()
@@ -49,35 +50,38 @@ def detecting(pipeline, width = 640, height = 360):
                 minDepthRight = dist
                 minXRight = x
 
-    depthThreshold = 0.6
+    depthThreshold = 0.6 # detec objects within 0.6 meters 
 
-    # if minDepthRight < depthThreshold:
-    #     if minXRight < (width*3/4):
-    #         print("Front: ", minDepthRight)
+    if minDepthRight < depthThreshold:
+        if minXRight < (width*3/4):
+            distance_output = "Front: " + str(round(minDepthRight,2))
 
-    #     else:
-    #         print("Right: ", minDepthRight)
+        else:
+            distance_output = "Right: " + str(round(minDepthRight,2))
 
-    # if minDepthLeft < depthThreshold:
-    #     if minXLeft > (width/4):
-    #         print("Front: ", minDepthLeft)
+    elif minDepthLeft < depthThreshold:
+        if minXLeft > (width/4):
+            distance_output = "Front: " + str(round(minDepthLeft,2))
 
-    #     else:
-    #         print("Left: ", minDepthLeft)
+        else:
+            distance_output = "Left: " + str(round(minDepthLeft,2) +)
+
+    else: 
+        distance_output = "Front: " + str(round(minDepthLeft,2))
 
     depth_image = np.asanyarray(depth_frame.get_data())
     color_image = np.asanyarray(color_frame.get_data())
 
-    # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
-    depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
-
-    # Stack both images horizontally
-    images = np.hstack((color_image, depth_colormap))
+    # Writing out distance info on screen
+    if distance_output != '': 
+        cv2.putText(color_image, distance_output,(30, 40), font, 3, (255, 0, 0), 3)
 
     # Show images
     cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
-    cv2.imshow('RealSense', images)
+    cv2.imshow('RealSense', color_image)
     
+    
+
 
 def start(pipeline = None):
     if pipeline == None:
@@ -85,7 +89,7 @@ def start(pipeline = None):
 
     try:
         while True:
-            detecting(pipeline)
+            detectingObject(pipeline)
             c = cv2.waitKey(1)
             if c == 27:
                 break
@@ -94,4 +98,6 @@ def start(pipeline = None):
         pipeline.stop()
         print(e)
 
-start()
+
+if __name__ == '__main__':
+    start()
