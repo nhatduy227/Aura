@@ -4,11 +4,11 @@ from responseConstants import GREETING, UNKNOWN
 from inputOutput import speak
 
 
-def executeGreeting(engine, command):
+def executeGreeting(engine, command=None):
     speak(engine, GREETING)
 
 
-def executeByeCommand(engine, command):
+def executeByeCommand(engine, command=None):
     speak(engine, "Goodbye!")
 
 
@@ -18,7 +18,7 @@ def executeWhereIsCommand(engine, command):
     # TODO: Look for that think -> Instruct the user to that thing
 
 
-def executeUnknownCommand(engine, command):
+def executeUnknownCommand(engine, command=None):
     speak(engine, UNKNOWN)
 
 def excuteWhereAmICommand(engine, command):

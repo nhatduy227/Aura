@@ -15,7 +15,7 @@ def processQuery(engine, query):
         executeUnknownCommand(engine, None)
 
 
-COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand),
+COMMANDS = [(isGreetingCommand, executeGreeting),
             (isWhereIsCommand, executeWhereIsCommand), (isWhereAmICommand, excuteWhereAmICommand)]
 
 if __name__ == '__main__':
@@ -25,4 +25,8 @@ if __name__ == '__main__':
 
     while True:
         query = takeCommand().lower()
+        if isByeCommand(query):
+            executeByeCommand(engine)
+            break
+
         processQuery(engine, query)
