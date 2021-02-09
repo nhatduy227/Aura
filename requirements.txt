@@ -1,5 +1,8 @@
 SpeechRecognition == 3.8.1
 pyttsx3 == 2.90
+opencv-python == 4.5.1.48
+imutils == 0.5.4
+
 
 # NOTE: Also install pyaudio package
 # pip install pipwin

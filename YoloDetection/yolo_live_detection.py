@@ -1,5 +1,5 @@
-from __future__ import print_function
 from WebcamVideoStream import WebcamVideoStream
+from Constant import *
 from imutils.video import FPS
 import argparse
 import threading
@@ -53,7 +53,7 @@ def show_detected_object(frame, outs, width, height):
 
 
 # Camera Rendering
-cap = WebcamVideoStream(src=1).start()
+cap = WebcamVideoStream(src=INTERNAL_CAMERA).start()
 
 while True:
     # Start FPS counter
