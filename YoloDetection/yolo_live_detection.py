@@ -53,7 +53,7 @@ def show_detected_object(frame, outs, width, height):
 
 
 # Camera Rendering
-cap = WebcamVideoStream(src=1).start()
+cap = WebcamVideoStream(src=0).start()
 
 while True:
     # Start FPS counter
