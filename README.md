@@ -15,8 +15,6 @@ To implement Live detection using Yolo, do the following steps: </br>
 * Run yolo_image_detection.py and a live stream should pop up 
 * Press the ESC to exit the program 
 
-You can also run yolo_image_detection.py to detect objects in a chosen image. 
-
 # Aura Virtual Assistant 
 To implement Aura Virtual Assitant, do the following steps: </br>
 * Go to Virtual Assistant, yun main.py
