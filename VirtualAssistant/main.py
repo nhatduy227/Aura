@@ -15,8 +15,9 @@ def processQuery(engine, query):
         executeUnknownCommand(engine, None)
 
 
-COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand),
-            (isWhereIsCommand, executeWhereIsCommand), (isWhereAmICommand, excuteWhereAmICommand)]
+COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand), (isWhereIsCommand, executeWhereIsCommand),
+            (isWhereAmICommand, excuteWhereAmICommand), (isSelectModeCommand, executeSelectModeCommand), 
+            (isShowInstructionCommand, executeShowInstructionCommand)]
 
 if __name__ == '__main__':
     engine = initSpeakEngine('female')
