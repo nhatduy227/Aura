@@ -14,7 +14,6 @@ def processQuery(engine, query):
     if not foundIntent:
         executeUnknownCommand(engine, None)
 
-
 COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand), (isWhereIsCommand, executeWhereIsCommand),
             (isWhereAmICommand, excuteWhereAmICommand), (isSelectModeCommand, executeSelectModeCommand), 
             (isShowInstructionCommand, executeShowInstructionCommand)]
@@ -26,4 +25,8 @@ if __name__ == '__main__':
 
     while True:
         query = takeCommand().lower()
+        if isByeCommand(query):
+            executeByeCommand(engine)
+            break
+
         processQuery(engine, query)
