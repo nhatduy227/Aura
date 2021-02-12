@@ -64,7 +64,7 @@ def detectingObject(pipeline, width = 640, height = 360):
             distance_output = "Front: " + str(round(minDepthLeft,2))
 
         else:
-            distance_output = "Left: " + str(round(minDepthLeft,2) +)
+            distance_output = "Left: " + str(round(minDepthLeft,2))
 
     else: 
         distance_output = "Front: " + str(round(minDepthLeft,2))
