@@ -1,0 +1,3 @@
+# Camera Selection 
+INTERNAL_CAMERA = 0
+EXTERNAL_CAMERA = 1 
