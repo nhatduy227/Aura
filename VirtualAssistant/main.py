@@ -14,9 +14,9 @@ def processQuery(engine, query):
     if not foundIntent:
         executeUnknownCommand(engine, None)
 
-
-COMMANDS = [(isGreetingCommand, executeGreeting),
-            (isWhereIsCommand, executeWhereIsCommand), (isWhereAmICommand, excuteWhereAmICommand)]
+COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand), (isWhereIsCommand, executeWhereIsCommand),
+            (isWhereAmICommand, excuteWhereAmICommand), (isSelectModeCommand, executeSelectModeCommand), 
+            (isShowInstructionCommand, executeShowInstructionCommand)]
 
 if __name__ == '__main__':
     engine = initSpeakEngine('female')

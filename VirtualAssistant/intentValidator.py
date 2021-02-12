@@ -17,3 +17,9 @@ def isWhereIsCommand(command):
 
 def isWhereAmICommand(command):
     return 'where am i' in command
+
+def isSelectModeCommand(command):
+    return 'select mode' in command
+
+def isShowInstructionCommand(command):
+    return 'instruction' in command
