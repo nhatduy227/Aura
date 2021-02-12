@@ -1,4 +1,5 @@
-YoloDectection/pretrained models/
+YoloDectection/pretrained models/*
 YoloDectection/__pycache__/
+YoloDectection/.vscode/
 .vscode/
 VirtualAssistant/__pycache__/

@@ -1,5 +1,5 @@
 MODES = set(["one", "two", "three", "four", "1", "2", "3", "4", "for"])
-MODES_MAP = {'one': 1, '1': 1, 'two': 2, 'three': 3, '3': 3, 'four': 4, '4': 4, 'for': 4}
+MODES_MAP = {'one': 1, '1': 1, 'two': 2, '2': 2, 'three': 3, '3': 3, 'four': 4, '4': 4, 'for': 4}
 
 
 def extractModeFromCommand(command):
