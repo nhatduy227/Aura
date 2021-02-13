@@ -1,5 +1,5 @@
-YoloDectection/pretrained models/*
-YoloDectection/__pycache__/
-YoloDectection/.vscode/
+ModeSelection/pretrained models/*
+ModeSelection/__pycache__/
+ModeSelection/.vscode/
 .vscode/
 VirtualAssistant/__pycache__/
