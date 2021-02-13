@@ -1,5 +1,13 @@
-MODES = set(["one", "two", "three", "four", "1", "2", "3", "4", "for"])
-MODES_MAP = {'one': 1, '1': 1, 'two': 2, '2': 2, 'three': 3, '3': 3, 'four': 4, '4': 4, 'for': 4}
+import enum
+
+
+class Modes(enum.Enum):
+    Iddle = 0
+    Waiting = 4
+
+
+VALID_MODES = set(['one', 'two', 'three', '1', '2', '3'])
+MODES_MAP = {'one': 1, '1': 1, 'two': 2, '2': 2, 'three': 3, '3': 3}
 
 
 def extractModeFromCommand(command):
@@ -10,5 +18,13 @@ def extractModeFromCommand(command):
     return "None"
 
 
+def extractObjectFromWhereIsCommand(command):
+    words = command.split()
+    for i in range(len(words) - 3):
+        if words[i] == 'where' and words[i + 1] == 'is':
+            return words[i + 3]
+    return None
+
+
 def isValidMode(mode):
-    return mode in MODES
+    return mode in VALID_MODES
