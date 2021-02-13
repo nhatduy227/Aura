@@ -1,32 +1,30 @@
 from inputOutput import takeCommand, initSpeakEngine, speak
 from intentValidator import *
 from executor import *
+from utility import Modes
 
 
-def processQuery(engine, query):
+def processQuery(engine, query, curMode):
     foundIntent = False
     for isIntent, execute in COMMANDS:
         if isIntent(query):
-            execute(engine, query)
-            foundIntent = True
-            break
+            return execute(engine, query)
 
-    if not foundIntent:
-        executeUnknownCommand(engine, None)
+    executeUnknownCommand(engine)
 
-COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand), (isWhereIsCommand, executeWhereIsCommand),
-            (isWhereAmICommand, excuteWhereAmICommand), (isSelectModeCommand, executeSelectModeCommand), 
+
+COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeCommand), (isSelectModeCommand, executeSelectModeCommand),
             (isShowInstructionCommand, executeShowInstructionCommand)]
 
 if __name__ == '__main__':
     engine = initSpeakEngine('female')
-
-    executeGreeting(engine, None)
+    curMode = Modes.Iddle
 
     while True:
         query = takeCommand().lower()
-        if isByeCommand(query):
-            executeByeCommand(engine)
-            break
 
-        processQuery(engine, query)
+        if curMode != Modes.Iddle:
+            curMode = processQuery(engine, query, curMode)
+        else:
+            if isWakeUpCommand(query):
+                curMode = Modes.Waiting
