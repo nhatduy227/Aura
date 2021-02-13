@@ -36,7 +36,7 @@ def handleFindObject(engine, command):
         if isByeCommand(query):
             executeByeCommand(engine)
             return Modes.Iddle
-        elif isShowInstructionCommand():
+        elif isShowInstructionCommand(query):
             executeShowInstructionCommand(engine)
         elif isWhereIsCommand(query):
             objName = extractObjectFromWhereIsCommand(query)
