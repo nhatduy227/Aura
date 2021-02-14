@@ -4,6 +4,7 @@ from intentValidator import *
 from responseConstants import *
 from utility import *
 from inputOutput import speak
+import os
 
 
 def executeGreeting(engine, command=None):
@@ -22,14 +23,11 @@ def executeShowInstructionCommand(engine, command):
 
 
 def handleNearestObjectDirection(engine, command):
-    # TODO: This is mode 1. A loop here to detect the object until ???
-    # Should we terminate when user say Ok or done or somthing like that?
-    # Remember to return the new mode here
-    pass
+    os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 1") 
 
 
 def handleFindObject(engine, command):
-    speak(engine, 'Please say Where is my, followed by the object name. Or, Where is the, followed by the object name.')
+    speak(engine, 'Please say Where is my, followed by the object name')
 
     while True:
         query = takeCommand().lower()
@@ -42,9 +40,8 @@ def handleFindObject(engine, command):
             objName = extractObjectFromWhereIsCommand(query)
             if objName:
                 speak(engine, 'You want to look for ' + objName)
-            # TODO: A loop here to tell the user about the direction of the object
-            # Terminate the loop when the object is right in front of the user
-            # Speak objName is in front of you before terminate
+                speak(engine, 'Please turn around slightly for to find the object')
+                os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 2 {name}".format(name=objName)) 
             return Modes.Waiting
         else:
             executeUnknownCommand(engine)
@@ -69,7 +66,7 @@ def executeSelectModeCommand(engine, command):
     speak(engine, 'You select mode ' + mode)
 
     if MODES_MAP[mode] == 1:
-        speak(engine, 'In this mode, I will tell you the direction of the closest object')
+        speak(engine, 'In this mode, I will help you avoid objects')
         return handleNearestObjectDirection(engine, command)
     elif MODES_MAP[mode] == 2:
         speak(engine, 'In this mode, I will help you find the object you want.')
