@@ -16,7 +16,7 @@ COMMANDS = [(isGreetingCommand, executeGreeting), (isByeCommand, executeByeComma
             (isShowInstructionCommand, executeShowInstructionCommand)]
 
 if __name__ == '__main__':
-    engine = initSpeakEngine('female')
+    engine = initSpeakEngine('male')
     curMode = Modes.Iddle
 
     while True:
@@ -26,4 +26,5 @@ if __name__ == '__main__':
             curMode = processQuery(engine, query, curMode)
         else:
             if isWakeUpCommand(query):
+                speak(engine, "Hi I am Aura. Please select between mode 1 and 3")
                 curMode = Modes.Waiting

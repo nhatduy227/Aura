@@ -3,6 +3,7 @@ import cv2
 from pathlib import Path
 import numpy as np
 from win32com.client import Dispatch
+import time
 
 # constants
 base_path = Path(__file__).parent
@@ -16,6 +17,7 @@ with open(coco_path, "r") as f:
     classes = [line.strip() for line in f.readlines()]
 colors = np.random.uniform(0, 255, size=(len(classes), 3))
 speak = Dispatch("SAPI.SpVoice").Speak
+start = time.time()
 
 
 # Load Yolo
@@ -89,12 +91,15 @@ def FindObject(pipeline, objName, width = 640, height = 360):
 
     cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
     cv2.imshow('RealSense', color_image)
-    for i in range(len(objectList)): 
+    for i in range(len(objectList)):
+        # if (time.time() - start) > 30: 
+        #         speak("Cannot find {name}. Please re enter mode 2 again".format(name = objName))
+        #         return 'break'
         if objectList[i] == objName:
             if distance < 1:
                 speak("Arrive")
                 return 'break'
-            speak("{name} found {distance} meters in front of you".format(name = objName,distance = round(distance,2)))
+            speak("{name} found {distance} meters in front of you. Move forward".format(name = objName,distance = round(distance,2)))
             
         
 
