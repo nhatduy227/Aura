@@ -1,11 +1,23 @@
 import pyrealsense2 as rs
 import cv2
 import numpy as np
+import os
+from win32com.client import Dispatch
+import sys
 
 # constant
 font = cv2.FONT_HERSHEY_PLAIN
 distance_output = ''
+speak = Dispatch("SAPI.SpVoice").Speak
 
+def Beep(direction): 
+    if direction == 'front':
+        speak("front")
+    if direction == 'right':
+        speak("right")
+    if direction == 'left':
+        speak("left")
+    
 def ObjectAvoidance(pipeline, width = 640, height = 360):
 
     frames = pipeline.wait_for_frames()
@@ -45,17 +57,18 @@ def ObjectAvoidance(pipeline, width = 640, height = 360):
     if minDepthRight < depthThreshold:
         if minXRight < (width*3/4):
             distance_output = "Front: " + str(round(minDepthRight,2))
-
+            Beep('front')
         else:
             distance_output = "Right: " + str(round(minDepthRight,2))
+            Beep('right')
 
     elif minDepthLeft < depthThreshold:
         if minXLeft > (width/4):
             distance_output = "Front: " + str(round(minDepthLeft,2))
-
+            Beep('front')
         else:
             distance_output = "Left: " + str(round(minDepthLeft,2))
-
+            Beep('left')
     else: 
         distance_output = "Front: " + str(round(minDepthLeft,2))
 

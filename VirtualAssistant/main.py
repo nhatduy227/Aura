@@ -3,7 +3,6 @@ from intentValidator import *
 from executor import *
 from utility import Modes
 
-
 def processQuery(engine, query, curMode):
     foundIntent = False
     for isIntent, execute in COMMANDS:
