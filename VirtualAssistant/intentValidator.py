@@ -1,4 +1,5 @@
 # Purpose: Find the user's intention
+from utility import VALID_MODES
 
 def isGreetingCommand(command):
     greetingWords = ['hello', 'hi', 'hey']
@@ -15,11 +16,11 @@ def isByeCommand(command):
 
 
 def isWhereIsCommand(command):
-    return 'where is' in command
+    return 'where is' in command or "where's" in command
 
 
 def isSelectModeCommand(command):
-    return 'select mode' in command
+    return any([mode in command for mode in VALID_MODES])
 
 
 def isShowInstructionCommand(command):
