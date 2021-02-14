@@ -13,7 +13,7 @@ def executeGreeting(engine, command=None):
 
 
 def executeByeCommand(engine, command=None):
-    speak(engine, "Goodbye for now! Remember, to wake me up, just say Hey Aura")
+    speak(engine, "Goodbye for now! To wake me up, just say Hey")
     return Modes.Iddle
 
 
@@ -24,7 +24,7 @@ def executeShowInstructionCommand(engine, command):
 
 def handleNearestObjectDirection(engine, command):
     os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 1") 
-
+    return Modes.Waiting
 
 def handleFindObject(engine, command):
     speak(engine, 'Please say Where is my, followed by the object name')
@@ -48,9 +48,19 @@ def handleFindObject(engine, command):
 
 
 def handleDescribeView(engine, command):
-    # TODO: This is mode 3
-    speak(engine, 'A cute cat is in front of you.')
-    return Modes.Waiting
+    speak(engine, 'Please say capture')
+    while True:
+        query = takeCommand().lower()
+        if isByeCommand(query):
+            executeByeCommand(engine)
+            return Modes.Iddle
+        elif isShowInstructionCommand(query):
+            executeShowInstructionCommand(engine)
+        elif isWhatIsCommand(query):
+            os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 3") 
+            return Modes.Waiting
+        else:
+            executeUnknownCommand(engine)
 
 
 def executeUnknownCommand(engine, command=None):

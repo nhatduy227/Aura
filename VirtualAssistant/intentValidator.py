@@ -14,10 +14,11 @@ def isByeCommand(command):
         return True
     return False
 
-
 def isWhereIsCommand(command):
     return 'where is' in command or "where's" in command
 
+def isWhatIsCommand(command):
+    return 'capture' in command or "capture" in command
 
 def isSelectModeCommand(command):
     return any([mode in command for mode in VALID_MODES])
