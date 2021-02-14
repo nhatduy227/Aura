@@ -92,9 +92,9 @@ def FindObject(pipeline, objName, width = 640, height = 360):
     cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
     cv2.imshow('RealSense', color_image)
     for i in range(len(objectList)):
-        if (time.time() - start) > 15: 
-                speak("Cannot find {name}. Please re enter mode 2 again".format(name = objName))
-                return 'break'
+        # if (time.time() - start) > 30: 
+        #         speak("Cannot find {name}. Please re enter mode 2 again".format(name = objName))
+        #         return 'break'
         if objectList[i] == objName:
             if distance < 1:
                 speak("Arrive")
