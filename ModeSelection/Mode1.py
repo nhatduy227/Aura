@@ -54,7 +54,7 @@ def ObjectAvoidance(pipeline, width = 640, height = 360):
 
     depthThreshold = 0.6 # detec objects within 0.6 meters 
 
-    if minDepthRight < depthThreshold:
+    if minDepthRight < depthThreshold and minDepthRight != 0.0:
         if minXRight < (width*3/4):
             distance_output = "Front: " + str(round(minDepthRight,2))
             Beep('front')
@@ -62,7 +62,7 @@ def ObjectAvoidance(pipeline, width = 640, height = 360):
             distance_output = "Right: " + str(round(minDepthRight,2))
             Beep('right')
 
-    elif minDepthLeft < depthThreshold:
+    elif minDepthLeft < depthThreshold and minDepthLeft != 0.0:
         if minXLeft > (width/4):
             distance_output = "Front: " + str(round(minDepthLeft,2))
             Beep('front')
