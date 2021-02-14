@@ -41,9 +41,6 @@ def handleFindObject(engine, command):
             if objName:
                 speak(engine, 'You want to look for ' + objName)
                 os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 2 {name}".format(name=objName)) 
-            # TODO: A loop here to tell the user about the direction of the object
-            # Terminate the loop when the object is right in front of the user
-            # Speak objName is in front of you before terminate
             return Modes.Waiting
         else:
             executeUnknownCommand(engine)
