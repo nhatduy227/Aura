@@ -1,7 +1,8 @@
 import pyrealsense2 as rs
-from ObjectAvoidance import ObjectAvoidance 
-from findObject import findObject 
+from Mode1 import ObjectAvoidance 
+from Mode2 import FindObject 
 import cv2
+import sys
 
 def startRsPipeline():
     # Configure depth and color streams
@@ -25,9 +26,8 @@ def start(pipeline = None, mode = 1):
                 if c == 27:
                     break
             if mode == 2:
-                findObject(pipeline)
-                c = cv2.waitKey(1)
-                if c == 27:
+                out = FindObject(pipeline, sys.argv[2])
+                if out == 'break':
                     break
 
     except Exception as e:
@@ -36,4 +36,4 @@ def start(pipeline = None, mode = 1):
 
 
 if __name__ == '__main__':
-    start(None,2)
+    start(None,int(sys.argv[1]))

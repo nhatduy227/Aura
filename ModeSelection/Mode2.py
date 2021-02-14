@@ -2,6 +2,7 @@ import pyrealsense2 as rs
 import cv2
 from pathlib import Path
 import numpy as np
+from win32com.client import Dispatch
 
 # constants
 base_path = Path(__file__).parent
@@ -14,6 +15,7 @@ classes = []  # loading all the object classes from coco.names to the classes va
 with open(coco_path, "r") as f:
     classes = [line.strip() for line in f.readlines()]
 colors = np.random.uniform(0, 255, size=(len(classes), 3))
+speak = Dispatch("SAPI.SpVoice").Speak
 
 
 # Load Yolo
@@ -69,7 +71,7 @@ def show_detected_object(frame, outs, width, height):
                 objectList.append(label)
     return objectList
 
-def findObject(pipeline, width = 640, height = 360):
+def FindObject(pipeline, objName, width = 640, height = 360):
     frames = pipeline.wait_for_frames()
     depth_frame = frames.get_depth_frame()
     color_frame = frames.get_color_frame()
@@ -87,9 +89,13 @@ def findObject(pipeline, width = 640, height = 360):
 
     cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
     cv2.imshow('RealSense', color_image)
-    # for i in range(len(objectList)): 
-    #     if objectList[i] == 'person':
-    #         print("Person found {distance}m in front of you".format(distance = distance))
-
+    for i in range(len(objectList)): 
+        if objectList[i] == objName:
+            if distance < 1:
+                speak("Arrive")
+                return 'break'
+            speak("{name} found {distance} meters in front of you".format(name = objName,distance = round(distance,2)))
+            
+        
 
 
