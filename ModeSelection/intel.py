@@ -1,8 +1,11 @@
 import pyrealsense2 as rs
-from Mode1 import ObjectAvoidance 
-from Mode2 import FindObject 
+from Mode1 import ObjectAvoidance
+from Mode2 import FindObject
 import cv2
 import sys
+
+from ModeSelection.descibeImage import describe_video_stream
+
 
 def startRsPipeline():
     # Configure depth and color streams
@@ -14,8 +17,9 @@ def startRsPipeline():
     pipeline.start(config)
     return pipeline
 
-def start(pipeline = None, mode = 1):
-    if pipeline == None:
+
+def start(pipeline=None, mode=1):
+    if pipeline is None:
         pipeline = startRsPipeline()
 
     try:
@@ -25,10 +29,12 @@ def start(pipeline = None, mode = 1):
                 c = cv2.waitKey(1)
                 if c == 27:
                     break
-            if mode == 2:
+            elif mode == 2:
                 out = FindObject(pipeline, sys.argv[2])
                 if out == 'break':
                     break
+            elif mode == 3:
+                describe_video_stream(pipeline)
 
     except Exception as e:
         pipeline.stop()
@@ -36,4 +42,4 @@ def start(pipeline = None, mode = 1):
 
 
 if __name__ == '__main__':
-    start(None,int(sys.argv[1]))
+    start(None, int(sys.argv[1]))
