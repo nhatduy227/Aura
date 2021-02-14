@@ -3,3 +3,6 @@ ModeSelection/__pycache__/
 ModeSelection/.vscode/
 .vscode/
 VirtualAssistant/__pycache__/
+
+.DS_Store
+.idea/
