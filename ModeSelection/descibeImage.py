@@ -40,7 +40,7 @@ def init():
         tokenizer = pickle.load(handle)
 
 
-def run(img_url):
+def describeImage(img_url):
     try:
         caption = "startseq"
 
@@ -79,6 +79,19 @@ def run(img_url):
         return {"error": str(e)}
 
 
+def describe_video_stream(pipeline):
+    frames = pipeline.wait_for_frames()
+    depth_frame = frames.get_depth_frame()
+    color_frame = frames.get_color_frame()
+    if not depth_frame or not color_frame:
+        return
+
+    color_image = np.asanyarray(color_frame.get_data())
+    describeImage(color_image)
+
+
+
+
 if __name__ == '__main__':
     init()
-    run("../img/mr-robot1.jpg")
+    describeImage("../img/mr-robot1.jpg")
