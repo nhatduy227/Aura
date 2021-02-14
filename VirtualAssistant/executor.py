@@ -40,6 +40,7 @@ def handleFindObject(engine, command):
             objName = extractObjectFromWhereIsCommand(query)
             if objName:
                 speak(engine, 'You want to look for ' + objName)
+                speak(engine, 'Please turn around slightly for to find the object')
                 os.system("python c:/Users/nomie/Desktop/Aura/ModeSelection/intel.py 2 {name}".format(name=objName)) 
             return Modes.Waiting
         else:
