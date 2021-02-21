@@ -2,22 +2,24 @@ import pyrealsense2 as rs
 import cv2
 import numpy as np
 import os
-from win32com.client import Dispatch
+import time
 import sys
 
 # constant
 font = cv2.FONT_HERSHEY_PLAIN
 distance_output = ''
-speak = Dispatch("SAPI.SpVoice").Speak
-
+delayTime = 0.5
 
 def Beep(direction):
     if direction == 'front':
-        speak("front")
+        os.system('spd-say "front"')
+        time.sleep(delayTime)
     if direction == 'right':
-        speak("right")
+        os.system('spd-say "right"')
+        time.sleep(delayTime)
     if direction == 'left':
-        speak("left")
+        os.system('spd-say "left"')
+        time.sleep(delayTime)
 
 
 def ObjectAvoidance(pipeline, width=640, height=360):
