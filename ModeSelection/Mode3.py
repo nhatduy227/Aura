@@ -1,24 +1,16 @@
 import pickle
 import json
 import sys
-
 import numpy as np
-
 from keras.models import load_model
 from keras.applications.inception_v3 import preprocess_input
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.image import img_to_array
-
 from PIL import Image
 import requests
 from io import BytesIO
-
 import traceback
-from win32com.client import Dispatch
-
-#constant
-speak = Dispatch("SAPI.SpVoice").Speak
 
 def init():
     global caption_model
@@ -42,6 +34,8 @@ def init():
     with open('model/tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
 
+def speak(caption):
+    os.system('spd-say "{}"'.format(caption))
 
 def describeImage(img_url):
     try:
@@ -89,10 +83,6 @@ def describe_video_stream(pipeline):
     color_frame = frames.get_color_frame()
     if not depth_frame or not color_frame:
         return
-
-    # img = Image.open(color_frame.get_data())
-    # img = img.resize((WIDTH, HEIGHT), Image.ANTIALIAS)
-    # img = img_to_array(img)
 
     color_image = np.asarray(color_frame.get_data())
     im = Image.fromarray(color_image)

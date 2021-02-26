@@ -1,4 +1,3 @@
-import pyrealsense2 as rs
 import cv2
 import numpy as np
 import os
@@ -8,7 +7,7 @@ import sys
 # constant
 font = cv2.FONT_HERSHEY_PLAIN
 distance_output = ''
-delayTime = 0.5
+delayTime = 0.8
 
 def Beep(direction):
     if direction == 'front':
